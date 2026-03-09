@@ -4,7 +4,7 @@
 * Build for High Performance Network
 * Unix Based (FreeBSD)
 
-#### Summary
+#### Information
 * Overview Junos
 * Junos Advantages
 * 3 Mode of Junos
