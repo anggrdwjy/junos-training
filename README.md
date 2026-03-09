@@ -5,22 +5,22 @@
 * Unix Based (FreeBSD)
 
 ## Junos Advantages
-#### Separation of Resources
+#### 1. Separation of Resources
 * Control Engine (Core System)
 * Forwarding Engine (Forwarding Data)
 * Service Engine (SNMP, SSH, TELNET, etc)
 
-#### Single Operating System (Junos)
+#### 2. Single Operating System (Junos)
 * Routing Engine (OSPF, ISIS, BGP)
 * Packet Forwarding Engine (Forwarding Data)
 
-#### Junos Devices
+#### 3. Junos Devices
 * Switch (EX Series, QFX Series)
 * Router (ACX Series, MX Series, PTX Series)
 * Firewall (SRX Series)
 * Cloud Virtual (vMX, vSRX, vQFX)
 
-#### Certification Track
+#### 4. Certification Track
 * Routing and Switching (JNCIA, JNCIS, JNCIP, JNCIE)
 * Datacenter
 * Security
@@ -29,17 +29,17 @@
 * Design
 
 ## 3 Mode of Junos
-#### Unix Mode (Root Privilege)
+#### 1. Unix Mode (Root Privilege)
 * cli
   
-#### Operational Mode (User Privilege)
+#### 2. Operational Mode (User Privilege)
 * ping
 * traceroute
 * ssh
 * telnet
 * show
 
-#### Confiugration Mode (Root and User Privilege)
+#### 3. Confiugration Mode (Root and User Privilege)
   * configure
   * edit
   * set
@@ -47,25 +47,25 @@
 
 ## Basic Configuration
 
-#### Navigation Configuration (Hirarcy)
+#### 1. Navigation Configuration (Hirarcy)
 * up (back hirarcy)
 * up 3 (back 3 hirarcy)
 * top (back to top hirarcy)
 
-#### Hostname
+#### 2. Hostname
 ```
 set system host-name "hostname"
 commit
 ```
 
-#### Root Password
+#### 3. Root Password
 ```
 set system root-authentication plain-text-password
 "...." -> Password
 commit
 ```
 
-#### Username and Password
+#### 4. Username and Password
 ```
 set system login user [username] class super-user
 set system login user [username] authentication plain-text-password
@@ -73,7 +73,7 @@ set system login user [username] authentication plain-text-password
 commit
 ```
 
-#### Candidate and Active Configuration
+#### 5. Candidate and Active Configuration
 * Candidate
 ```
 show
@@ -84,7 +84,7 @@ show
 run show
 ```
 
-#### Commit Example
+#### 6. Commit Example
 * Commit
 ```
 commit check
@@ -103,7 +103,7 @@ rollback 1 -> back configuration commit 1
 rollback 0 -> discard candidate configuration
 ```
 
-#### Date and Time
+#### 7. Date and Time
 * Set Date
 ```
 run set date 202603060100.00 -> Operational Mode
@@ -121,7 +121,7 @@ commit
 show system uptime
 ```
 
-#### NTP
+#### 8. NTP (Network Time Protocol)
 ```
 set system ntp server id.pool.ntp.org -> Domain
 set system ntp ervr 162.159.200.123 -> IP 
@@ -129,12 +129,12 @@ show | compare
 commit
 ```
 
-#### SSH
+#### 9. SSH (Default Port 22)
 ```
 set system services ssh
 ```
 
-#### Delete, Active and Deactive Mode
+#### 10. Delete, Active and Deactive Mode
 * Delete Configuration
 ```
 delete ...
@@ -150,27 +150,27 @@ deactive ...
 active ...
 ```
 
-#### Rename
+#### 11. Rename
 ```
 rename user "user" to "user10"
 show | compare
 commit
 ```
-#### Replace
+#### 12. Replace
 ```
 replace pattern user "user" with "superuser"
 show | compare
 commit
 ```
 
-#### Pipeline
+#### 13. Pipeline
 ```
 | match [parameter]
 | no-more
 | display set
 ```
 
-#### Backup Configuration
+#### 14. Backup Configuration
 * Backup Configuration
 ```
 save "backup_config"
@@ -182,7 +182,7 @@ run file list
 cat "backup_config"
 ```
 
-#### Restore Configuration
+#### 15. Restore Configuration
 * Restore Configuration
 ```
 load override "old_config"
@@ -190,7 +190,7 @@ show | compare
 commit
 ```
 
-#### Load Merge Configuration
+#### 16. Load Merge Configuration
 * Merge Configuration
 ```
 load merge "old_config"
@@ -198,7 +198,7 @@ show | compare
 commit
 ```
 
-#### Reset Configuration
+#### 17. Reset Configuration
 * Reset
 ```
 load factory-default
@@ -206,7 +206,7 @@ show | compare
 commit
 ```
 
-#### Configure
+#### 18. Configure
 * Configure
 ```
 set ...
@@ -230,7 +230,7 @@ show | compare
 commit
 ```
 
-#### Interface
+#### 19. Interface Configuration
 * Interface Configuration
 ```
 set interfaces lo0 unit 0 family inet address 1.1.1.1/32
@@ -246,7 +246,7 @@ run ping 10.10.10.x
 
 ## Routing Configuration
 
-#### Static Routing
+#### 1. Static Routing
 * Static Route Configuration
 ```
 set routing-options static route "destination_network" next-hop "gateway"
@@ -266,7 +266,7 @@ show | compare
 commit
 ```
 
-#### OSPF Routing
+#### 2. OSPF Routing
 * Router ID
 ```
 set routing-options router-id 1.1.1.1
@@ -308,5 +308,5 @@ show | compare
 commit
 ```
 
-#### IS-IS
+#### 3. IS-IS
 
