@@ -266,7 +266,7 @@ show | compare
 commit
 ```
 
-#### OSPF
+#### OSPF Routing
 * Router ID
 ```
 set routing-options router-id 1.1.1.1
