@@ -50,13 +50,139 @@
 * up 3 (back 3 hirarcy)
 * top (back to top hirarcy)
 
-### Candidate Configuration
-
-### Active Configuration
-
 ## Basic Configuration
 
-### Backup Configuration
+#### Hostname
+```
+set system host-name "hostname"
+```
+
+#### Root Password
+```
+set system root-authentication plain-text-password
+"...." -> Password
+commit
+```
+
+#### Interface
+* Interface Configuration
+```
+set interfaces em0 unit 0 family ipv4 address 10.10.10.1/24
+commit
+```
+
+* Verification
+```
+run show interfaces terse
+run ping 10.10.10.x
+```
+
+#### Username and Password
+```
+set system login user [username] class super-user
+set system login user [username] authentication plain-text-password
+"...." -> Password
+commit
+```
+
+#### Candidate and Active Configuration
+* Candidate
+```
+show
+```
+
+* Active
+```
+run show
+```
+
+#### Commit Example
+* Commit
+```
+commit check
+commit and-quit
+commit at "2026-03-26 24:00:00" -> Schedule commit time
+commit confirmed -> 10minutes rollback configuration (default)
+commit confirmed 1 (1 minute)
+commit confirmed 20 (20 minute)
+commit comment "remove xxyyzz"
+show system commit
+```
+
+* default commit comment maks 49 list
+```
+rollback 1 -> back configuration commit 1
+rollback 0 -> discard candidate configuration
+```
+
+#### Date and Time
+* Set Date
+```
+run set date 202603060100.00 -> Operational Mode
+```
+
+* Set Timezone
+```
+set system timezone Asia/Jakarta -> Configuration Mode
+show | compare
+commit
+```
+
+* Verification
+```
+show system uptime
+```
+
+#### NTP
+```
+set system ntp server id.pool.ntp.org -> Domain
+set system ntp ervr 162.159.200.123 -> IP 
+show | compare
+commit
+```
+
+#### SSH
+```
+set system services ssh
+```
+
+#### Delete, Active and Deactive Mode
+* Delete Configuration
+```
+delete ...
+```
+
+* Disable Configuration
+```
+deactive ...
+```
+
+* Active Configuration
+```
+active ...
+```
+
+#### Rename
+```
+rename user "user" to "user10"
+show | compare
+commit
+```
+#### Replace
+```
+replace pattern user "user" with "superuser"
+show | compare
+commit
+```
+
+#### Pipeline
+```
+| match [parameter]
+| no-more
+| display set
+```
+
+#### Backup Configuration
 * Backup Configuration
 ```
 save "backup_config"
@@ -68,7 +194,7 @@ run file list
 cat "backup_config"
 ```
 
-### Restore Configuration
+#### Restore Configuration
 * Restore Configuration
 ```
 load override "old_config"
@@ -76,7 +202,7 @@ show | compare
 commit
 ```
 
-### Load Merge Configuration
+#### Load Merge Configuration
 * Merge Configuration
 ```
 load merge "old_config"
@@ -84,7 +210,7 @@ show | compare
 commit
 ```
 
-### Reset Configuration
+#### Reset Configuration
 * Reset
 ```
 load factory-default
@@ -92,7 +218,7 @@ show | compare
 commit
 ```
 
-### Configure
+#### Configure
 * Configure
 ```
 set ...
@@ -118,7 +244,7 @@ commit
 
 ## Routing Configuration
 
-### Static Routing
+#### Static Routing
 * Static Route Configuration
 ```
 set routing-options static route [destination_network] next-hop [gateway]
@@ -138,7 +264,7 @@ show | compare
 commit
 ```
 
-### OSPF
+#### OSPF
 
-### IS-IS
+#### IS-IS
 
