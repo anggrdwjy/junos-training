@@ -56,9 +56,87 @@
 
 ## Basic Configuration
 
+### Backup Configuration
+* Backup Configuration
+```
+save "backup_config"
+```
+
+* Verification Backup Configuration
+```
+run file list
+cat "backup_config"
+```
+
+### Restore Configuration
+* Restore Configuration
+```
+load override "old_config"
+show | compare
+commit
+```
+
+### Load Merge Configuration
+* Merge Configuration
+```
+load merge "old_config"
+show | compare
+commit
+```
+
+### Reset Configuration
+* Reset
+```
+load factory-default
+show | compare
+commit
+```
+
+### Configure
+* Configure
+```
+set ...
+show | compare
+commit
+```
+
+* Configure Private
+```
+configure private
+set ...
+show | compare
+commit
+```
+
+* Configure Exclusive
+```
+configure exclusive
+set ...
+show | compare
+commit
+```
+
 ## Routing Configuration
 
 ### Static Routing
+* Static Route Configuration
+```
+set routing-options static route [destination_network] next-hop [gateway]
+show | compare
+commit
+```
+
+* Routing Table Static
+```
+show route protocol static
+```
+
+* Delete Static Route
+```
+delete routing-options static
+show | compare
+commit
+```
 
 ### OSPF
 
