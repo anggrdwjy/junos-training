@@ -426,4 +426,122 @@ set system services telnet
   ```
   show route protocol isis
   ```
+
+## Routing Policy
+
+#### Default Routing Policy
+* Default Routing Policy :
+  A. OSPF
+  - Import Policy : Accept All Route from OSPF
+  - Export Policy : Export only to OSPF
+
+  B. IS-IS
+  - Import Policy : Accept All Route from IS-IS
+  - Export Policy : Export only to IS-IS
+
+  C. RIP
+  - Import Policy : Accept All Route from RIP
+  - Export Policy : Discard all export
+
+  D. BGP
+  - Import Policy : Accept All Route from BGP
+  - Export Policy : Export to all active BGP neighbor
+
+## Redistribution Policy
+
+#### Redistribution OSPF to IS-IS
+* Set Policy and Export
+```
+set policy-options policy-statement OSPF-to-ISIS term 1
+set policy-options policy-statement OSPF-to-ISIS term 1 from protocol ospf
+set policy-options policy-statement OSPF-to-ISIS term 1 from protocol direct
+set policy-options policy-statement OSPF-to-ISIS term 1 them accept
+set protocol isis export OSPF-to-ISIS
+```
+
+* Verification
+```
+show route protocol isis
+show route protocol ospf
+```
+
+#### Redistribution IS-IS to OSPF
+* Set Policy and Export
+```
+set policy-options policy-statement ISIS-to-OSPF term 1
+set policy-options policy-statement ISIS-to-OSPF term 1 from protocol isis
+set policy-options policy-statement ISIS-to-OSPF term 1 from protocol direct
+set policy-options policy-statement ISIS-to-OSPF term 1 them accept
+set protocol isis export ISIS-to-OSPF
+```
+
+* Verification
+```
+show route protocol isis
+show route protocol ospf
+```
+
+## Firewall Filter
+
+#### Firewall Concept
+* Discard  -> Bloking
+* Reject   -> Bloking with Notification
   
+#### Reject Ping (ICMP)
+* Set Term Firewall Filter ICMP (Reject)
+  ```
+  set firewall filter FILTER-PING term FILTER-TERM-1
+  set firewall filter FILTER-PING term FILTER-TERM-1 from source-address 10.xx.yy.zz/24	-> Network Destination
+  set firewall filter FILTER-PING term FILTER-TERM-1 from destination-address 1.1.1.1/32	-> Loopback R1
+  set firewall filter FILTER-PING term FILTER-TERM-1 from protocol icmp 
+  set firewall filter FILTER-PING term FILTER-TERM-1 then reject
+  show | compare
+  commit
+  ```
+  
+* Set Term Firewall Filter ICMP (Accept)
+  ```
+  set firewall filter FILTER-PING term FILTER-DEFAULT
+  set firewall filter FILTER-PING term FILTER-DEFAULT then accept
+  show | compare
+  commit
+  ```
+  
+* Export Filter in Interface (Lo0, em0, etc)
+  ```
+  set interface lo0 unit 0 family inet filter input FILTER-TERM-1
+  show | compare
+  commit
+  ```
+  
+#### Reject SSH (Default Port 22)
+* Set Term Firewall Filter SSH (Reject)
+  ```
+  set firewall filter FILTER-SSH term FILTER-TERM-SSH 
+  set firewall filter FILTER-SSH term FILTER-TERM-SSH from source-address 10.xx.xx.yy/24
+  set firewall filter FILTER-SSH term FILTER-TERM-SSH from protocol tcp 
+  set firewall filter FILTER-SSH term FILTER-TERM-SSH from destination-port 22
+  set firewall filter FILTER-SSH term FILTER-TERM-SSH then reject
+  show | compare
+  commit
+  ```
+* Set Term Firewall Filter SSH (Accept)
+  ```
+  set firewall filter FILTER-SSH term FILTER-DEFAULT
+  set firewall filter FILTER-SSH term FILTER-DEFAULT then accept
+  show | compare
+  commit
+  ```
+
+## Support
+
+* [:octocat: Follow me on GitHub](https://github.com/anggrdwjy)
+* [🔔 Subscribe me on Youtube](https://www.youtube.com/@anggarda.wijaya)
+
+
+#### Bugs
+
+Please open an issue on GitHub with as much information as possible if you found a bug.
+* Your Junos and Software Update
+* All the logs and message outputted
+* etc
