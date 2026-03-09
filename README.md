@@ -54,10 +54,10 @@
 * show
 
 #### 3. Confiugration Mode (Root and User Privilege)
-  * configure
-  * edit
-  * set
-  * run
+* configure
+* edit
+* set
+* run
 
 ## Basic Configuration
 
@@ -69,7 +69,6 @@
 #### 2. Hostname
 ```
 set system host-name "hostname"
-commit
 ```
 
 #### 3. Root Password
@@ -128,7 +127,7 @@ commit comment "remove xxyyzz"
 show system commit
 ```
 
-* default commit comment maks 49 list
+* Rollback commit comment maks 49 list
 ```
 rollback 1 -> back configuration commit 1
 rollback 0 -> discard candidate configuration
@@ -160,9 +159,11 @@ show | compare
 commit
 ```
 
-#### 9. SSH (Default Port 22)
+#### 9. SSH (Default Port 22), FTP, TELNET
 ```
 set system services ssh
+set system services ftp
+set system services telnet
 ```
 
 #### 10. Delete, Active and Deactive Mode
@@ -181,27 +182,31 @@ deactive ...
 active ...
 ```
 
-#### 11. Rename
+#### 11. Rename and Replace Parameter
+* Rename Example
 ```
+edit system
 rename user "user" to "user10"
 show | compare
 commit
 ```
-#### 12. Replace
+
+* Replace Example
 ```
+edit system
 replace pattern user "user" with "superuser"
 show | compare
 commit
 ```
 
-#### 13. Pipeline
+#### 12. Pipeline
 ```
 | match [parameter]
 | no-more
 | display set
 ```
 
-#### 14. Backup Configuration
+#### 13. Backup, Restore, Load Merge Configuration
 * Backup Configuration
 ```
 save "backup_config"
@@ -213,7 +218,6 @@ run file list
 cat "backup_config"
 ```
 
-#### 15. Restore Configuration
 * Restore Configuration
 ```
 load override "old_config"
@@ -221,23 +225,22 @@ show | compare
 commit
 ```
 
-#### 16. Load Merge Configuration
-* Merge Configuration
+* Load Merge Configuration
 ```
 load merge "old_config"
 show | compare
 commit
 ```
 
-#### 17. Reset Configuration
-* Reset
+#### 14. Reset Configuration
+* Reset Factory Default
 ```
 load factory-default
 show | compare
 commit
 ```
 
-#### 18. Configure
+#### 15. Configure
 * Configure
 ```
 set ...
@@ -261,7 +264,7 @@ show | compare
 commit
 ```
 
-#### 19. Interface Configuration
+#### 16. Interface Configuration
 * Loopback Configuration
 ```
 set interfaces lo0 unit 0 description
@@ -348,4 +351,37 @@ commit
 ```
 
 #### 3. IS-IS
+* Overview IS-IS
+  - First IGP  Routing Protocol
+  - ISO Standard
+  - ISO Address as router-id (SysID)
+    
+* Detail IS-IS Concept
+  - AFI		    -> 49
+  - Area ID		-> 0001
+  - Sys ID		-> 1720.1400.4004
+  - Selector	-> 00
 
+* Convert IP to SysID
+  - Step 1 : 172.14.4.4
+  - Step 2 : 172.014.004.004
+  - Step 3 : 1720.1400.4004
+  
+* Leveling IS-IS
+  - Level 1 : Connection Singlearea (Intra area)
+    ```
+    49.0001.1720.1400.4004.00 (level 1)
+    49.0001.1720.1400.4005.00
+    49.0001.1720.1400.4006.00
+    ```
+    
+  - Level 2 : Connection Multiarea (Inter area)
+    ```
+    49.0002.1720.1400.4004.00 (level 2)
+    49.0002.1720.1400.4005.00
+    49.0002.1720.1400.4006.00
+    ```
+
+* Configuration Loopback
+* Configuration Interface
+* 
