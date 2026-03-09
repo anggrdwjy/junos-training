@@ -55,6 +55,7 @@
 #### Hostname
 ```
 set system host-name "hostname"
+commit
 ```
 
 #### Root Password
