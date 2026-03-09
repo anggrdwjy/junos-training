@@ -66,8 +66,25 @@ commit
 ```
 
 #### 4. Username and Password
+* Superuser
 ```
 set system login user [username] class super-user
+set system login user [username] authentication plain-text-password
+"...." -> Password
+commit
+```
+
+* Operator
+```
+set system login user [username] class operator
+set system login user [username] authentication plain-text-password
+"...." -> Password
+commit
+```
+
+* Admin
+```
+set system login user [username] class admin
 set system login user [username] authentication plain-text-password
 "...." -> Password
 commit
@@ -231,9 +248,16 @@ commit
 ```
 
 #### 19. Interface Configuration
+* Loopback Configuration
+```
+set interfaces lo0 unit 0 description
+set interfaces lo0 unit 0 family inet address 1.1.1.1/32
+commit
+```
+
 * Interface Configuration
 ```
-set interfaces lo0 unit 0 family inet address 1.1.1.1/32
+set interfaces em0 unit 0 description
 set interfaces em0 unit 0 family inet address 10.10.10.1/24
 commit
 ```
@@ -241,6 +265,7 @@ commit
 * Verification
 ```
 run show interfaces terse
+run show interfaces brief
 run ping 10.10.10.x
 ```
 
