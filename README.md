@@ -44,21 +44,27 @@
 
 ## 3 Mode of Junos
 #### 1. Unix Mode (Root Privilege)
-* cli
+```
+root@:~ # cli
+root>
+```
   
 #### 2. Operational Mode (User Privilege)
-* ping
-* traceroute
-* ssh
-* telnet
-* show
+```
+root> ping
+root> traceroute
+root> ssh
+root> telnet
+root> show
+```
 
 #### 3. Confiugration Mode (Root and User Privilege)
-* configure
-* edit
-* set
-* run
-
+```
+root> configure
+root> run
+root# edit
+root# set
+```
 ## Basic Configuration
 
 #### 1. Navigation Configuration (Hirarcy)
@@ -68,222 +74,222 @@
 
 #### 2. Hostname
   ```
-  set system host-name "hostname"
+  root# set system host-name "hostname"
   ```
 
 #### 3. Root Password
   ```
-  set system root-authentication plain-text-password
+  root# set system root-authentication plain-text-password
   "...." -> Password
-  commit
+  root# commit
   ```
 
 #### 4. Username and Password
 * Superuser
   ```
-  set system login user [username] class super-user
-  set system login user [username] authentication plain-text-password
+  root# set system login user [username] class super-user
+  root# set system login user [username] authentication plain-text-password
   "...." -> Password
-  commit
+  root# commit
   ```
 
 * Operator
   ```
-  set system login user [username] class operator
-  set system login user [username] authentication plain-text-password
+  root# set system login user [username] class operator
+  root# set system login user [username] authentication plain-text-password
   "...." -> Password
-  commit
+  root# commit
   ```
 
 * Admin
   ```
-  set system login user [username] class admin
-  set system login user [username] authentication plain-text-password
+  root# set system login user [username] class admin
+  root# set system login user [username] authentication plain-text-password
   "...." -> Password
-  commit
+  root# commit
   ```
 
 #### 5. Candidate and Active Configuration
 * Candidate
   ```
-  show
+  root> show
   ```
 
 * Active
   ```
-  run show
+  root# run show
   ```
 
 #### 6. Commit Example
 * Commit
   ```
-  commit check
-  commit and-quit
-  commit at "2026-03-26 24:00:00" -> Schedule commit time
-  commit confirmed -> 10minutes rollback configuration (default)
-  commit confirmed 1 (1 minute)
-  commit confirmed 20 (20 minute)
-  commit comment "remove xxyyzz"
-  show system commit
+  root# commit check
+  root# commit and-quit
+  root# commit at "2026-03-26 24:00:00" -> Schedule commit time
+  root# commit confirmed -> 10minutes rollback configuration (default)
+  root# commit confirmed 1 (1 minute)
+  root# commit confirmed 20 (20 minute)
+  root# commit comment "remove xxyyzz"
+  root# show system commit
   ```
 
 * Rollback commit comment maks 49 list
   ```
-  rollback 1 -> back configuration commit 1
-  rollback 0 -> discard candidate configuration
+  root# rollback 1 -> back configuration commit 1
+  root# rollback 0 -> discard candidate configuration
   ```
 
 #### 7. Date and Time
 * Set Date
   ```
-  run set date 202603060100.00 -> Operational Mode
+  root> run set date 202603060100.00 -> Operational Mode
   ```
 
 * Set Timezone
   ```
-  set system timezone Asia/Jakarta -> Configuration Mode
-  show | compare
-  commit
+  root# set system timezone Asia/Jakarta -> Configuration Mode
+  root# show | compare
+  root# commit
   ```
 
 * Verification
   ```
-  show system uptime
+  root# show system uptime
   ```
 
 #### 8. NTP (Network Time Protocol)
 ```
-set system ntp server id.pool.ntp.org -> Domain
-set system ntp ervr 162.159.200.123 -> IP 
-show | compare
-commit
+root# set system ntp server id.pool.ntp.org -> Domain
+root# set system ntp ervr 162.159.200.123 -> IP 
+root# show | compare
+root# commit
 ```
 
 #### 9. SSH (Default Port 22), FTP, TELNET
 ```
-set system services ssh
-set system services ftp
-set system services telnet
+root# set system services ssh
+root# set system services ftp
+root# set system services telnet
 ```
 
 #### 10. Delete, Active and Deactive Mode
 * Delete Configuration
   ```
-  delete ...
+  root# delete ...
   ```
 
 * Disable Configuration
   ```
-  deactive ...
+  root# deactive ...
   ```
 
 * Active Configuration
   ```
-  active ...
+  root# active ...
   ```
 
 #### 11. Rename and Replace Parameter
 * Rename Example
   ```
-  edit system
-  rename user "user" to "user10"
-  show | compare
-  commit
+  root# edit system
+  root# rename user "user" to "user10"
+  root# show | compare
+  root# commit
   ```
 
 * Replace Example
   ```
-  edit system
-  replace pattern user "user" with "superuser"
-  show | compare
-  commit
+  root# edit system
+  root# replace pattern user "user" with "superuser"
+  root# show | compare
+  root# commit
   ```
 
 #### 12. Pipeline
 ```
-| match [parameter]
-| no-more
-| display set
+root# show | match [parameter]
+root# show | no-more
+root# show | display set
 ```
 
 #### 13. Backup, Restore, Load Merge Configuration
 * Backup Configuration
   ```
-  save "backup_config"
+  root# save "backup_config"
   ```
 
 * Verification Backup Configuration
   ```
-  run file list
-  cat "backup_config"
+  root# run file list
+  root# cat "backup_config"
   ```
 
 * Restore Configuration
   ```
-  load override "old_config"
-  show | compare
-  commit
+  root# load override "old_config"
+  root# show | compare
+  root# commit
   ```
 
 * Load Merge Configuration
   ```
-  load merge "old_config"
-  show | compare
-  commit
+  root# load merge "old_config"
+  root# show | compare
+  root# commit
   ```
 
 #### 14. Reset Configuration
 * Reset Factory Default
   ```
-  load factory-default
-  show | compare
-  commit
+  root# load factory-default
+  root# show | compare
+  root# commit
   ```
 
 #### 15. Configure
 * Configure
   ```
-  set ...
-  show | compare
-  commit
+  root# set ...
+  root# show | compare
+  root# commit
   ```
 
 * Configure Private
   ```
-  configure private
-  set ...
-  show | compare
-  commit
+  root# configure private
+  root# set ...
+  root# show | compare
+  root# commit
   ```
 
 * Configure Exclusive
   ```
-  configure exclusive
-  set ...
-  show | compare
-  commit
+  root# configure exclusive
+  root# set ...
+  root# show | compare
+  root# commit
   ```
 
 #### 16. Interface Configuration
 * Loopback Configuration
   ```
-  set interfaces lo0 unit 0 description
-  set interfaces lo0 unit 0 family inet address 1.1.1.1/32
-  commit
+  root# set interfaces lo0 unit 0 description
+  root# set interfaces lo0 unit 0 family inet address 1.1.1.1/32
+  root# commit
   ```
 
 * Interface Configuration
   ```
-  set interfaces em0 unit 0 description
-  set interfaces em0 unit 0 family inet address 10.10.10.1/24
-  commit
+  root# set interfaces em0 unit 0 description
+  root# set interfaces em0 unit 0 family inet address 10.10.10.1/24
+  root# commit
   ```
 
 * Verification
   ```
-  run show interfaces terse
-  run show interfaces brief
-  run ping 10.10.10.x
+  root> run show interfaces terse
+  root> run show interfaces brief
+  root> run ping 10.10.10.x
   ```
 
 ## Routing Configuration
@@ -291,63 +297,63 @@ set system services telnet
 #### 1. Static Routing
 * Static Route Configuration
   ```
-  set routing-options static route "destination_network" next-hop "gateway"
-  show | compare
-  commit
+  root# set routing-options static route "destination_network" next-hop "gateway"
+  root# show | compare
+  root# commit
   ```
 
 * Routing Table Static
   ```
-  show route protocol static
+  root# show route protocol static
   ```
 
 * Delete Static Route
   ```
-  delete routing-options static
-  show | compare
-  commit
+  root# delete routing-options static
+  root# show | compare
+  root# commit
   ```
 
 #### 2. OSPF Routing
 * Router ID
   ```
-  set routing-options router-id 1.1.1.1
+  root# set routing-options router-id 1.1.1.1
   ```
 
 * OSPF Advertise Routing Single Area
   ```
-  set protocols ospf area 1 interface em0
-  set protocols ospf area 1 interface em1
-  set protocols ospf area 1 interface lo0
-  show | compare
-  commit
+  root# set protocols ospf area 1 interface em0
+  root# set protocols ospf area 1 interface em1
+  root# set protocols ospf area 1 interface lo0
+  root# show | compare
+  root# commit
   ```
 
 * OSPF Advertise Routing Multi Area
   ```
-  set routing-options router-id 2.2.2.2
-  set protocols ospf area 1 interface em0
-  set protocols ospf area 2 interface em1
-  set protocols ospf area 0 interface lo0
-  show | compare
-  commit
+  root# set routing-options router-id 2.2.2.2
+  root# set protocols ospf area 1 interface em0
+  root# set protocols ospf area 2 interface em1
+  root# set protocols ospf area 0 interface lo0
+  root# show | compare
+  root# commit
   ```
 
 * Verification
   ```
-  show configuration routing-options
-  show configuration protocols ospf
-  show ospf neighbor
-  show ospf route
-  show route protocol ospf
+  root# show configuration routing-options
+  root# show configuration protocols ospf
+  root# show ospf neighbor
+  root# show ospf route
+  root# show route protocol ospf
   ```
 
 * Migration Area OSPF (Rename Area)
   ```
-  edit protocols ospf
-  rename area 0 to area 100
-  show | compare
-  commit
+  root# edit protocols ospf
+  root# rename area 0 to area 100
+  root# show | compare
+  root# commit
   ```
 
 #### 3. IS-IS Routing
@@ -384,47 +390,47 @@ set system services telnet
 
 * IS-IS Loopback
   ```
-  set interface lo0 unit 0 family inet address 1.0.0.1/32
-  set interface em0 unit 0 family inet address 1.1.1.1/30
-  set interface em1 unit 0 family inet address 1.1.1.2/30
-  set interface em2 unit 0 family inet address s1.1.1.3/30
+  root# set interface lo0 unit 0 family inet address 1.0.0.1/32
+  root# set interface em0 unit 0 family inet address 1.1.1.1/30
+  root# set interface em1 unit 0 family inet address 1.1.1.2/30
+  root# set interface em2 unit 0 family inet address s1.1.1.3/30
   ```
   
 * IS-IS Interface
   ```
-  set interface lo0 unit 0 family iso address 49.0001.1720.1400.4004.00
-  set interface em0 unit 0 family iso
-  set interface em1 unit 0 family iso
-  set interface em2 unit 0 family iso
+  root# set interface lo0 unit 0 family iso address 49.0001.1720.1400.4004.00
+  root# set interface em0 unit 0 family iso
+  root# set interface em1 unit 0 family iso
+  root# set interface em2 unit 0 family iso
   ```
   
 * IS-IS Advertise Routing Level-1
   ```
-  set protocols isis interface lo0 level 2 disable (level 1 enable)
-  set protocols isis interface em0 level 2 disable (level 1 enable)
-  set protocols isis interface em1 level 2 disable (level 1 enable)
-  set protocols isis interface em2 level 2 disable (level 1 enable)
+  root# set protocols isis interface lo0 level 2 disable (level 1 enable)
+  root# set protocols isis interface em0 level 2 disable (level 1 enable)
+  root# set protocols isis interface em1 level 2 disable (level 1 enable)
+  root# set protocols isis interface em2 level 2 disable (level 1 enable)
   ```
   
 * IS-IS Advertise Routing Level-2
   ```
-  set protocols isis interface lo0 level 1 disable (level 2 enable)
-  set protocols isis interface em0 level 1 disable (level 2 enable)
-  set protocols isis interface em1 level 1 disable (level 2 enable)
-  set protocols isis interface em2 level 1 disable (level 2 enable)
+  root# set protocols isis interface lo0 level 1 disable (level 2 enable)
+  root# set protocols isis interface em0 level 1 disable (level 2 enable)
+  root# set protocols isis interface em1 level 1 disable (level 2 enable)
+  root# set protocols isis interface em2 level 1 disable (level 2 enable)
   ```
   
 * IS-IS Advertise Routing Level-2 and Level-1
   ```
-  set protocols isis interface lo0 level 2 disable (level 1 enable)
-  set protocols isis interface em0 level 2 disable (level 1 enable)
-  set protocols isis interface em1 level 1 disable (level 2 enable)
-  set protocols isis interface em2 level 1 disable (level 2 enable)
+  root# set protocols isis interface lo0 level 2 disable (level 1 enable)
+  root# set protocols isis interface em0 level 2 disable (level 1 enable)
+  root# set protocols isis interface em1 level 1 disable (level 2 enable)
+  root# set protocols isis interface em2 level 1 disable (level 2 enable)
   ```
   
 * Verification
   ```
-  show route protocol isis
+  root# show route protocol isis
   ```
 
 ## Routing Policy
@@ -452,33 +458,33 @@ set system services telnet
 #### 1. Redistribution OSPF to IS-IS
 * Set Policy and Export
 ```
-set policy-options policy-statement OSPF-to-ISIS term 1
-set policy-options policy-statement OSPF-to-ISIS term 1 from protocol ospf
-set policy-options policy-statement OSPF-to-ISIS term 1 from protocol direct
-set policy-options policy-statement OSPF-to-ISIS term 1 them accept
-set protocol isis export OSPF-to-ISIS
+root# set policy-options policy-statement OSPF-to-ISIS term 1
+root# set policy-options policy-statement OSPF-to-ISIS term 1 from protocol ospf
+root# set policy-options policy-statement OSPF-to-ISIS term 1 from protocol direct
+root# set policy-options policy-statement OSPF-to-ISIS term 1 them accept
+root# set protocol isis export OSPF-to-ISIS
 ```
 
 * Verification
 ```
-show route protocol isis
-show route protocol ospf
+root# show route protocol isis
+root# show route protocol ospf
 ```
 
 #### 2. Redistribution IS-IS to OSPF
 * Set Policy and Export
 ```
-set policy-options policy-statement ISIS-to-OSPF term 1
-set policy-options policy-statement ISIS-to-OSPF term 1 from protocol isis
-set policy-options policy-statement ISIS-to-OSPF term 1 from protocol direct
-set policy-options policy-statement ISIS-to-OSPF term 1 them accept
-set protocol isis export ISIS-to-OSPF
+root# set policy-options policy-statement ISIS-to-OSPF term 1
+root# set policy-options policy-statement ISIS-to-OSPF term 1 from protocol isis
+root# set policy-options policy-statement ISIS-to-OSPF term 1 from protocol direct
+root# set policy-options policy-statement ISIS-to-OSPF term 1 them accept
+root# set protocol isis export ISIS-to-OSPF
 ```
 
 * Verification
 ```
-show route protocol isis
-show route protocol ospf
+root# show route protocol isis
+root# show route protocol ospf
 ```
 
 ## Firewall Filter
@@ -490,47 +496,47 @@ show route protocol ospf
 #### 2. Reject Ping (ICMP)
 * Set Term Firewall Filter ICMP (Reject)
   ```
-  set firewall filter FILTER-PING term FILTER-TERM-1
-  set firewall filter FILTER-PING term FILTER-TERM-1 from source-address 10.xx.yy.zz/24	-> Network Destination
-  set firewall filter FILTER-PING term FILTER-TERM-1 from destination-address 1.1.1.1/32	-> Loopback R1
-  set firewall filter FILTER-PING term FILTER-TERM-1 from protocol icmp 
-  set firewall filter FILTER-PING term FILTER-TERM-1 then reject
-  show | compare
-  commit
+  root# set firewall filter FILTER-PING term FILTER-TERM-1
+  root# set firewall filter FILTER-PING term FILTER-TERM-1 from source-address 10.xx.yy.zz/24	-> Network Destination
+  root# set firewall filter FILTER-PING term FILTER-TERM-1 from destination-address 1.1.1.1/32	-> Loopback R1
+  root# set firewall filter FILTER-PING term FILTER-TERM-1 from protocol icmp 
+  root# set firewall filter FILTER-PING term FILTER-TERM-1 then reject
+  root# show | compare
+  root# commit
   ```
   
 * Set Term Firewall Filter ICMP (Accept)
   ```
-  set firewall filter FILTER-PING term FILTER-DEFAULT
-  set firewall filter FILTER-PING term FILTER-DEFAULT then accept
-  show | compare
-  commit
+  root# set firewall filter FILTER-PING term FILTER-DEFAULT
+  root# set firewall filter FILTER-PING term FILTER-DEFAULT then accept
+  root# show | compare
+  root# commit
   ```
   
 * Export Filter in Interface (Lo0, em0, etc)
   ```
-  set interface lo0 unit 0 family inet filter input FILTER-TERM-1
-  show | compare
-  commit
+  root# set interface lo0 unit 0 family inet filter input FILTER-TERM-1
+  root# show | compare
+  root# commit
   ```
   
 #### 3. Reject SSH (Default Port 22)
 * Set Term Firewall Filter SSH (Reject)
   ```
-  set firewall filter FILTER-SSH term FILTER-TERM-SSH 
-  set firewall filter FILTER-SSH term FILTER-TERM-SSH from source-address 10.xx.xx.yy/24
-  set firewall filter FILTER-SSH term FILTER-TERM-SSH from protocol tcp 
-  set firewall filter FILTER-SSH term FILTER-TERM-SSH from destination-port 22
-  set firewall filter FILTER-SSH term FILTER-TERM-SSH then reject
-  show | compare
-  commit
+  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH 
+  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from source-address 10.xx.xx.yy/24
+  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from protocol tcp 
+  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from destination-port 22
+  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH then reject
+  root# show | compare
+  root# commit
   ```
 * Set Term Firewall Filter SSH (Accept)
   ```
-  set firewall filter FILTER-SSH term FILTER-DEFAULT
-  set firewall filter FILTER-SSH term FILTER-DEFAULT then accept
-  show | compare
-  commit
+  root# set firewall filter FILTER-SSH term FILTER-DEFAULT
+  root# set firewall filter FILTER-SSH term FILTER-DEFAULT then accept
+  root# show | compare
+  root# commit
   ```
 
 ## Support
