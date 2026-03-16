@@ -19,12 +19,12 @@ Junos OS (also known as Juniper Junos, Junos and JUNOS) is a FreeBSD-based netwo
 * Routing Policy
 * Redistribution Policy
 * Firewall Filter
-* MPLS Configuration [Bonus]
-* I-BGP Route Reflector [Bonus]
-* MPLS L2VPN Configuration [Bonus]
-* VPLS Configuration [Bonus]
-* MPLS L3VPN Configuration [Bonus]
-* LACP Configuration [Bonus]
+* MPLS Configuration        -> [Bonus]
+* I-BGP Route Reflector     -> [Bonus]
+* MPLS L2VPN Configuration  -> [Bonus]
+* VPLS Configuration        -> [Bonus]
+* MPLS L3VPN Configuration  -> [Bonus]
+* LACP Configuration        -> [Bonus]
 
 ## Junos Advantages
 #### 1. Separation of Resources
