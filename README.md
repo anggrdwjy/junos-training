@@ -68,21 +68,23 @@ root# set
 ## Basic Configuration
 
 #### 1. Navigation Configuration (Hirarcy)
-* up (back hirarcy)
-* up 3 (back 3 hirarcy)
-* top (back to top hirarcy)
+```
+root# up (back hirarcy)
+root# up 3 (back 3 hirarcy)
+root# top (back to top hirarcy)
+```
 
 #### 2. Hostname
-  ```
-  root# set system host-name "hostname"
-  ```
+```
+root# set system host-name "hostname"
+```
 
 #### 3. Root Password
-  ```
-  root# set system root-authentication plain-text-password
-  "...." -> Password
-  root# commit
-  ```
+```
+root# set system root-authentication plain-text-password
+"...." -> Password
+root# commit
+```
 
 #### 4. Username and Password
 * Superuser
