@@ -298,65 +298,65 @@ root> run ping 10.10.10.x
 
 #### 1. Static Routing
 * Static Route Configuration
-  ```
-  root# set routing-options static route "destination_network" next-hop "gateway"
-  root# show | compare
-  root# commit
-  ```
+```
+root# set routing-options static route "destination_network" next-hop "gateway"
+root# show | compare
+root# commit
+```
 
 * Routing Table Static
-  ```
-  root# show route protocol static
-  ```
+```
+root# show route protocol static
+```
 
 * Delete Static Route
-  ```
-  root# delete routing-options static
-  root# show | compare
-  root# commit
-  ```
+```
+root# delete routing-options static
+root# show | compare
+root# commit
+```
 
 #### 2. OSPF Routing
 * Router ID
-  ```
-  root# set routing-options router-id 1.1.1.1
-  ```
+```
+root# set routing-options router-id 1.1.1.1
+```
 
 * OSPF Advertise Routing Single Area
-  ```
-  root# set protocols ospf area 1 interface em0
-  root# set protocols ospf area 1 interface em1
-  root# set protocols ospf area 1 interface lo0
-  root# show | compare
-  root# commit
-  ```
+```
+root# set protocols ospf area 1 interface em0
+root# set protocols ospf area 1 interface em1
+root# set protocols ospf area 1 interface lo0
+root# show | compare
+root# commit
+```
 
 * OSPF Advertise Routing Multi Area
-  ```
-  root# set routing-options router-id 2.2.2.2
-  root# set protocols ospf area 1 interface em0
-  root# set protocols ospf area 2 interface em1
-  root# set protocols ospf area 0 interface lo0
-  root# show | compare
-  root# commit
-  ```
+```
+root# set routing-options router-id 2.2.2.2
+root# set protocols ospf area 1 interface em0
+root# set protocols ospf area 2 interface em1
+root# set protocols ospf area 0 interface lo0
+root# show | compare
+root# commit
+```
 
 * Verification
-  ```
-  root# show configuration routing-options
-  root# show configuration protocols ospf
-  root# show ospf neighbor
-  root# show ospf route
-  root# show route protocol ospf
-  ```
+```
+root# show configuration routing-options
+root# show configuration protocols ospf
+root# show ospf neighbor
+root# show ospf route
+root# show route protocol ospf
+```
 
 * Migration Area OSPF (Rename Area)
-  ```
-  root# edit protocols ospf
-  root# rename area 0 to area 100
-  root# show | compare
-  root# commit
-  ```
+```
+root# edit protocols ospf
+root# rename area 0 to area 100
+root# show | compare
+root# commit
+```
 
 #### 3. IS-IS Routing
 * Overview IS-IS
@@ -391,49 +391,49 @@ root> run ping 10.10.10.x
     ```
 
 * IS-IS Loopback
-  ```
-  root# set interface lo0 unit 0 family inet address 1.0.0.1/32
-  root# set interface em0 unit 0 family inet address 1.1.1.1/30
-  root# set interface em1 unit 0 family inet address 1.1.1.2/30
-  root# set interface em2 unit 0 family inet address s1.1.1.3/30
-  ```
+```
+root# set interface lo0 unit 0 family inet address 1.0.0.1/32
+root# set interface em0 unit 0 family inet address 1.1.1.1/30
+root# set interface em1 unit 0 family inet address 1.1.1.2/30
+root# set interface em2 unit 0 family inet address s1.1.1.3/30
+```
   
 * IS-IS Interface
-  ```
-  root# set interface lo0 unit 0 family iso address 49.0001.1720.1400.4004.00
-  root# set interface em0 unit 0 family iso
-  root# set interface em1 unit 0 family iso
-  root# set interface em2 unit 0 family iso
-  ```
+```
+root# set interface lo0 unit 0 family iso address 49.0001.1720.1400.4004.00
+root# set interface em0 unit 0 family iso
+root# set interface em1 unit 0 family iso
+root# set interface em2 unit 0 family iso
+```
   
 * IS-IS Advertise Routing Level-1
-  ```
-  root# set protocols isis interface lo0 level 2 disable (level 1 enable)
-  root# set protocols isis interface em0 level 2 disable (level 1 enable)
-  root# set protocols isis interface em1 level 2 disable (level 1 enable)
-  root# set protocols isis interface em2 level 2 disable (level 1 enable)
-  ```
+```
+root# set protocols isis interface lo0 level 2 disable (level 1 enable)
+root# set protocols isis interface em0 level 2 disable (level 1 enable)
+root# set protocols isis interface em1 level 2 disable (level 1 enable)
+root# set protocols isis interface em2 level 2 disable (level 1 enable)
+```
   
 * IS-IS Advertise Routing Level-2
-  ```
-  root# set protocols isis interface lo0 level 1 disable (level 2 enable)
-  root# set protocols isis interface em0 level 1 disable (level 2 enable)
-  root# set protocols isis interface em1 level 1 disable (level 2 enable)
-  root# set protocols isis interface em2 level 1 disable (level 2 enable)
-  ```
+```
+root# set protocols isis interface lo0 level 1 disable (level 2 enable)
+root# set protocols isis interface em0 level 1 disable (level 2 enable)
+root# set protocols isis interface em1 level 1 disable (level 2 enable)
+root# set protocols isis interface em2 level 1 disable (level 2 enable)
+```
   
 * IS-IS Advertise Routing Level-2 and Level-1
-  ```
-  root# set protocols isis interface lo0 level 2 disable (level 1 enable)
-  root# set protocols isis interface em0 level 2 disable (level 1 enable)
-  root# set protocols isis interface em1 level 1 disable (level 2 enable)
-  root# set protocols isis interface em2 level 1 disable (level 2 enable)
-  ```
+```
+root# set protocols isis interface lo0 level 2 disable (level 1 enable)
+root# set protocols isis interface em0 level 2 disable (level 1 enable)
+root# set protocols isis interface em1 level 1 disable (level 2 enable)
+root# set protocols isis interface em2 level 1 disable (level 2 enable)
+```
   
 * Verification
-  ```
-  root# show route protocol isis
-  ```
+```
+root# show route protocol isis
+```
 
 ## Routing Policy
 
@@ -497,49 +497,49 @@ root# show route protocol ospf
   
 #### 2. Reject Ping (ICMP)
 * Set Term Firewall Filter ICMP (Reject)
-  ```
-  root# set firewall filter FILTER-PING term FILTER-TERM-1
-  root# set firewall filter FILTER-PING term FILTER-TERM-1 from source-address 10.xx.yy.zz/24	-> Network Destination
-  root# set firewall filter FILTER-PING term FILTER-TERM-1 from destination-address 1.1.1.1/32	-> Loopback R1
-  root# set firewall filter FILTER-PING term FILTER-TERM-1 from protocol icmp 
-  root# set firewall filter FILTER-PING term FILTER-TERM-1 then reject
-  root# show | compare
-  root# commit
-  ```
+```
+root# set firewall filter FILTER-PING term FILTER-TERM-1
+root# set firewall filter FILTER-PING term FILTER-TERM-1 from source-address 10.xx.yy.zz/24	-> Network Destination
+root# set firewall filter FILTER-PING term FILTER-TERM-1 from destination-address 1.1.1.1/32	-> Loopback R1
+root# set firewall filter FILTER-PING term FILTER-TERM-1 from protocol icmp 
+root# set firewall filter FILTER-PING term FILTER-TERM-1 then reject
+root# show | compare
+root# commit
+```
   
 * Set Term Firewall Filter ICMP (Accept)
-  ```
-  root# set firewall filter FILTER-PING term FILTER-DEFAULT
-  root# set firewall filter FILTER-PING term FILTER-DEFAULT then accept
-  root# show | compare
-  root# commit
-  ```
+```
+root# set firewall filter FILTER-PING term FILTER-DEFAULT
+root# set firewall filter FILTER-PING term FILTER-DEFAULT then accept
+root# show | compare
+root# commit
+```
   
 * Export Filter in Interface (Lo0, em0, etc)
-  ```
-  root# set interface lo0 unit 0 family inet filter input FILTER-TERM-1
-  root# show | compare
-  root# commit
-  ```
+```
+root# set interface lo0 unit 0 family inet filter input FILTER-TERM-1
+root# show | compare
+root# commit
+```
   
 #### 3. Reject SSH (Default Port 22)
 * Set Term Firewall Filter SSH (Reject)
-  ```
-  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH 
-  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from source-address 10.xx.xx.yy/24
-  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from protocol tcp 
-  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from destination-port 22
-  root# set firewall filter FILTER-SSH term FILTER-TERM-SSH then reject
-  root# show | compare
-  root# commit
-  ```
+```
+root# set firewall filter FILTER-SSH term FILTER-TERM-SSH 
+root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from source-address 10.xx.xx.yy/24
+root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from protocol tcp 
+root# set firewall filter FILTER-SSH term FILTER-TERM-SSH from destination-port 22
+root# set firewall filter FILTER-SSH term FILTER-TERM-SSH then reject
+root# show | compare
+root# commit
+```
 * Set Term Firewall Filter SSH (Accept)
-  ```
-  root# set firewall filter FILTER-SSH term FILTER-DEFAULT
-  root# set firewall filter FILTER-SSH term FILTER-DEFAULT then accept
-  root# show | compare
-  root# commit
-  ```
+```
+root# set firewall filter FILTER-SSH term FILTER-DEFAULT
+root# set firewall filter FILTER-SSH term FILTER-DEFAULT then accept
+root# show | compare
+root# commit
+```
 
 ## Support
 
