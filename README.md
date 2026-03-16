@@ -409,14 +409,6 @@ root# set protocols ospf area "id area" interface "port" dead-interval 15
 root# set protocols ospf area "id area" interface "port" authentication md5 1 key "password"
 ```
 
-* OSPF Policy
-```
-root# set policy-options policy-statement "ospf-term" term 1 from route-filter "ip address /xx" exact
-root# set policy-options policy-statement "ospf-term" term 1 then accept
-root# set policy-options policy-statement "ospf-term" term 2 then reject
-root# set protocols ospf export "ospf-term"
-```
-
 * OSPF Traffic-Engineering and Reference Bandwidth
 ```
 root# set protocols ospf traffic-engineering
@@ -520,21 +512,32 @@ root# set protocol isis level 2 wide-metrics-only    -> Inter Area
 
 #### Default Routing Policy
 
-  A. OSPF
-  - Import Policy : Accept All Route from OSPF
-  - Export Policy : Export only to OSPF
+A. OSPF
+- Import Policy : Accept All Route from OSPF
+- Export Policy : Export only to OSPF
 
-  B. IS-IS
-  - Import Policy : Accept All Route from IS-IS
-  - Export Policy : Export only to IS-IS
+B. IS-IS
+- Import Policy : Accept All Route from IS-IS
+- Export Policy : Export only to IS-IS
 
-  C. RIP
-  - Import Policy : Accept All Route from RIP
-  - Export Policy : Discard all export
+C. RIP
+- Import Policy : Accept All Route from RIP
+- Export Policy : Discard all export
 
-  D. BGP
-  - Import Policy : Accept All Route from BGP
-  - Export Policy : Export to all active BGP neighbor
+D. BGP
+- Import Policy : Accept All Route from BGP
+- Export Policy : Export to all active BGP neighbor
+
+* Example
+```
+* OSPF Policy
+```
+root# set policy-options policy-statement "ospf-term" term 1 from route-filter "ip address /xx" exact
+root# set policy-options policy-statement "ospf-term" term 1 then accept
+root# set policy-options policy-statement "ospf-term" term 2 then reject
+root# set protocols ospf export "ospf-term"
+```
+```
 
 ## Redistribution Policy
 
