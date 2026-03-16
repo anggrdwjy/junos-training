@@ -629,7 +629,7 @@ root# commit
 ```
 
 ## MPLS (Multi Protocol Labeling Switching)
-#### MPLS Interface
+#### 1. MPLS Interface
 * MPLS Configuration
 ```
 root# set protocols mpls no-propagate-ttl
@@ -645,7 +645,7 @@ root> show mpls interface brief
 root> show mpls lsp brief
 ```
 
-#### MPLS LDP (Label Distribution Protocol)
+#### 2. MPLS LDP (Label Distribution Protocol)
 * LDP Configuration
 ```
 root# set protocols ldp interface lo0
@@ -662,7 +662,7 @@ root> show ldp neighbor
 root> show ldp session
 ```
 
-#### LLDP (Link Layer Discovery Protocol)
+#### 3. LLDP (Link Layer Discovery Protocol)
 * LLDP
 ```
 root# set protocols lldp interface em0
@@ -675,7 +675,7 @@ root> show lldp neighbor
 root> show lldp detail
 ```
 
-#### RSVP (Resource Reservation Protocol)
+#### 4. RSVP (Resource Reservation Protocol)
 * RSVP
 ```
 root# set protocols rsvp interface lo0
@@ -690,7 +690,7 @@ root> show rsvp interface
 
 ## I-BGP Route Reflector
 
-#### BGP Route Reflector (Master)
+#### 1. BGP Route Reflector (Master)
 * Router RR
 ```
 root# set routing-options graceful-restart
@@ -717,7 +717,7 @@ root> show bgp summary
 root> show bgp neighbor
 ```
 
-#### BGP Router Client (Client)
+#### 2. BGP Router Client (Client)
 * Router Client
 ```
 root# set routing-options graceful-restart
@@ -743,7 +743,7 @@ root> show bgp neighbor
 
 ## MPLS L2VPN Configuration
 
-#### Far End
+#### 1. Far End
 * L2VPN
 ```
 root# set protocols l2circuit neighbor "near-end loopback" interface ge-0/0/1.10 virtual-circuit-id 10
@@ -767,7 +767,7 @@ root# set interfaces ge-0/0/1 unit 10 vlan-id 10
 root# run show l2circuit connections
 ```
 
-#### Near End
+#### 2. Near End
 * L2VPN
 ```
 root# set protocols l2circuit neighbor "far-end loopback" interface ge-0/0/1.10 virtual-circuit-id 10
@@ -792,6 +792,68 @@ root# run show l2circuit connections
 ```
 
 ## VPLS Configuration
+
+#### Far End
+* VPLS
+```
+root# set routing-instances "to Near-end" instance-type vpls 
+root# set routing-instances "to Near-end" interface ge-0/0/4.0 
+root# set routing-instances "to Near-end" protocols vpls encapsulation-type ethernet 
+root# set routing-instances "to Near-end" protocols vpls no-control-word 
+root# set routing-instances "to Near-end" protocols vpls no-tunnel-services 
+root# set routing-instances "to Near-end" protocols vpls vpls-id 234 
+root# set routing-instances "to Near-end" protocols vpls mtu 1500 
+root# set routing-instances "to Near-end" protocols vpls ignore-mtu-mismatch 
+root# set routing-instances "to Near-end" protocols vpls ignore-encapsulation-mismatch 
+root# set routing-instances "to Near-end" protocols vpls neighbor "to Near-end Loopback" switchover-delay 5000 
+root# set routing-instances "to Near-end" protocols vpls neighbor "to Near-end Loopback" revert-time 60 
+root# set routing-instances "to Near-end" protocols vpls neighbor "to Near-end Loopback" backup-neighbor "to Backup-HO Loopback" standby 
+```
+
+* Service Instance
+```
+root# set interfaces ge-0/0/4 unit 0 description "to Near-end"  
+root# set interfaces ge-0/0/4 mtu 1500 
+root# set interfaces ge-0/0/4 encapsulation ethernet-vpls 
+```
+
+* Verification
+```
+root> show vpls connections
+root> show vpls mac-table brief
+root> show route forwarding-table family vpls
+```
+
+#### Near End
+* VPLS
+```
+root# set routing-instances "to Far-end" instance-type vpls 
+root# set routing-instances "to Far-end" interface ge-0/0/4.0 
+root# set routing-instances "to Far-end" protocols vpls encapsulation-type ethernet 
+root# set routing-instances "to Far-end" protocols vpls no-control-word 
+root# set routing-instances "to Far-end" protocols vpls no-tunnel-services 
+root# set routing-instances "to Far-end" protocols vpls vpls-id 234 
+root# set routing-instances "to Far-end" protocols vpls mtu 1500 
+root# set routing-instances "to Far-end" protocols vpls ignore-mtu-mismatch 
+root# set routing-instances "to Far-end" protocols vpls ignore-encapsulation-mismatch 
+root# set routing-instances "to Far-end" protocols vpls neighbor "to Far-end Loopback" switchover-delay 5000 
+root# set routing-instances "to Far-end" protocols vpls neighbor "to Far-end Loopback" revert-time 60 
+root# set routing-instances "to Far-end" protocols vpls neighbor "to Far-end Loopback" backup-neighbor "to Backup-HO Loopback" standby 
+```
+
+* Service Instance
+```
+root# set interfaces ge-0/0/4 unit 0 description "to Far-end" 
+root# set interfaces ge-0/0/4 mtu 1500 
+root# set interfaces ge-0/0/4 encapsulation ethernet-vpls 
+```
+
+* Verification
+```
+root> show vpls connections
+root> show vpls mac-table brief
+root> show route forwarding-table family vpls
+```
 
 ## MPLS L3VPN Configuration
 
