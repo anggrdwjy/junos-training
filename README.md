@@ -17,12 +17,12 @@
 * [Routing Policy](#routing-policy)
 * [Redistribution Policy](#redistribution-policy)
 * [Firewall Filter](#firewall-filter)
-* [MPLS (Multi Protocol Labeling Switching)](#mpls-multi-protocol-labeling-switching)
-* [Interior-BGP Route Reflector](#interior-bgp-route-reflector)
-* [MPLS L2VPN Configuration](#mpls-l2vpn-configuration)
-* [VPLS Configuration](#vpls-configuration)
-* [MPLS L3VPN Configuration](#mpls-l3vpn-configuration)
-* [LACP (Link Aggregation Control Protocol)](#lacp-link-aggregation-control-protocol)
+* [MPLS (Multi Protocol Labeling Switching)](#mpls-multi-protocol-labeling-switching) - Bonus
+* [Interior-BGP Route Reflector](#interior-bgp-route-reflector) - Bonus
+* [MPLS L2VPN Configuration](#mpls-l2vpn-configuration) - Bonus
+* [VPLS Configuration](#vpls-configuration) - Bonus
+* [MPLS L3VPN Configuration](#mpls-l3vpn-configuration) - Bonus
+* [LACP (Link Aggregation Control Protocol)](#lacp-link-aggregation-control-protocol) - Bonus
 
 ## Junos Advantages
 #### 1. Separation of Resources
