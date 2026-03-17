@@ -18,7 +18,7 @@
 * [Redistribution Policy](#redistribution-policy)
 * [Firewall Filter](#firewall-filter)
 * [MPLS (Multi Protocol Labeling Switching)](#mpls-l2vpn-configuration)
-* [I-BGP Route Reflector](#i-bgp-route-reflector)
+* [Interior-BGP Route Reflector](#i-bgp-route-reflector)
 * [MPLS L2VPN Configuration](#mpls-l2vpn-configuration)
 * [VPLS Configuration](#vpls-configuration)
 * [MPLS L3VPN Configuration](#mpls-l3vpn-configuration)
@@ -686,7 +686,7 @@ root# set protocols rsvp interface em1
 root> show rsvp interface
 ```
 
-## I-BGP Route Reflector
+## Interior-BGP Route Reflector
 
 #### 1. BGP Route Reflector (Master)
 * Router Router Reflector
