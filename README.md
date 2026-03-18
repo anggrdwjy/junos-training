@@ -49,7 +49,7 @@
   * Design
 
 ## C. 3 Mode of Junos
-#### 1. Unix Mode (Root Privilege)
+#### 1. Unix Mode
  ```
  Amnesiac (ttyd0)
  login: root
@@ -58,7 +58,7 @@
  root>
  ```
   
-#### 2. Operational Mode (User Privilege)
+#### 2. Operational Mode
  ```
  root> ping
  root> traceroute
@@ -67,7 +67,7 @@
  root> show configuration
  ```
 
-#### 3. Confiugration Mode (Root and User Privilege)
+#### 3. Confiugration Mode
  ```
  root> configure
  root# edit
