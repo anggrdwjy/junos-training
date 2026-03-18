@@ -1,4 +1,4 @@
-## Overview Junos
+## A. Overview Junos
 
 <p align="center">
 <img src="img/juniperd.png">
@@ -24,7 +24,7 @@
 * [MPLS L3VPN Configuration](#mpls-l3vpn-configuration) - Bonus
 * [LACP (Link Aggregation Control Protocol)](#lacp-link-aggregation-control-protocol) - Bonus
 
-## Junos Advantages
+## B. Junos Advantages
 #### 1. Separation of Resources
   * Control Engine (Core System)
   * Forwarding Engine (Forwarding Data)
@@ -48,7 +48,7 @@
   * Automation
   * Design
 
-## 3 Mode of Junos
+## C. 3 Mode of Junos
 #### 1. Unix Mode (Root Privilege)
  ```
  Amnesiac (ttyd0)
@@ -73,7 +73,7 @@
  root# edit
  root# set
  ```
-## Basic Configuration
+## D. Basic Configuration
 
 #### 1. Navigation Configuration (Hirarcy)
  ```
@@ -342,7 +342,7 @@
  root# commit
  ```
 
-## Routing Configuration
+## D. Routing Configuration
 
 #### 1. Static Routing
 * Static Route Configuration
@@ -524,7 +524,7 @@
  root# run show isis database
  ```
 
-## Routing Policy
+## E. Routing Policy
 
 #### Default Routing Policy
 
@@ -554,7 +554,7 @@ root# show | compare
 root# commit
 ```
 
-## Redistribution Policy
+## F. Redistribution Policy
 
 #### 1. Redistribution OSPF to IS-IS
 * Set Policy and Export
@@ -592,7 +592,7 @@ root# run show route protocol isis
 root# run show route protocol ospf
 ```
 
-## Firewall Filter
+## G. Firewall Filter
 
 #### 1. Firewall Concept
 * Discard      -> Bloking
@@ -644,7 +644,7 @@ root# show | compare
 root# commit
 ```
 
-## MPLS (Multi Protocol Labeling Switching)
+## H. MPLS (Multi Protocol Labeling Switching)
 #### 1. MPLS Interface
 * MPLS Configuration
 ```
@@ -704,7 +704,7 @@ root# set protocols rsvp interface em1
 root# run show rsvp interface
 ```
 
-## Interior-BGP Route Reflector
+## I. Interior-BGP Route Reflector
 
 #### 1. BGP Route Reflector (Master)
 * Router Router Reflector
@@ -757,7 +757,7 @@ root# run show bgp summary
 root# run show bgp neighbor
 ```
 
-## MPLS L2VPN Configuration
+## J. MPLS L2VPN Configuration
 
 #### 1. Far End
 * L2VPN Configuration
@@ -807,7 +807,7 @@ root# set interfaces ge-0/0/1 unit 10 vlan-id 10
 root# run show l2circuit connections
 ```
 
-## VPLS Configuration
+## K. VPLS Configuration
 
 #### 1. Far End
 * VPLS Configuration
@@ -871,7 +871,7 @@ root# run show vpls mac-table brief
 root# run show route forwarding-table family vpls
 ```
 
-## MPLS L3VPN Configuration
+## K. MPLS L3VPN Configuration
 
 #### 1. Virtual Routing Forwarding
 * VPN Policy
@@ -1016,7 +1016,7 @@ root# run ping [DESTINATION_IP] source [SOURCE_IP]
 root# run traceroute [DESTINATION_IP] source [SOURCE_IP]
 ```
 
-## LACP (Link Aggregation Control Protocol)
+## L. LACP (Link Aggregation Control Protocol)
 
 * LACP Confifugraiton
 ```
